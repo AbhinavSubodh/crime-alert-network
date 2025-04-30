@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Crime Alert Network</title>
+    <!-- Google Maps API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Crime Alert Network</div>
+        <div class="nav-links">
+            <a href="#home" class="active" id="home-link">Home</a>
+            <a href="#report" id="report-link">Report Crime</a>
+            <a href="#map" id="map-link">View Map</a>
+            <a href="#admin" id="admin-link" class="hidden">Admin Panel</a>
+            <button id="auth-button">Login</button>
+        </div>
+    </nav>
+
+    <!-- Main Content Sections -->
+    <main>
+        <!-- Home Section -->
+        <section id="home-section" class="active-section">
+            <h1>Welcome to Neighborhood Crime Alert Network</h1>
+            <div id="home-map" class="map-container"></div>
+            <div id="recent-alerts" class="alerts-container">
+                <h2>Recent Alerts</h2>
+                <!-- Recent alerts will be loaded here -->
+            </div>
+        </section>
+
+        <!-- Report Crime Section -->
+        <section id="report-section" class="hidden">
+            <h2>Report a Crime</h2>
+            <form id="crime-report-form">
+                <div class="form-group">
+                    <label for="crime-type">Type of Crime</label>
+                    <select id="crime-type" required>
+                        <option value="">Select Crime Type</option>
+                        <option value="theft">Theft</option>
+                        <option value="vandalism">Vandalism</option>
+                        <option value="assault">Assault</option>
+                        <option value="suspicious">Suspicious Activity</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="crime-description">Description</label>
+                    <textarea id="crime-description" placeholder="Provide details about the incident" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Location</label>
+                    <div id="location-picker" class="map-container"></div>
+                    <input type="hidden" id="crime-location">
+                </div>
+
+                <div class="form-group">
+                    <label for="crime-image">Upload Image (optional)</label>
+                    <input type="file" id="crime-image" accept="image/*">
+                    <div id="image-preview"></div>
+                </div>
+
+                <button type="submit" class="btn-primary">Submit Report</button>
+            </form>
+        </section>
+
+        <!-- Map View Section -->
+        <section id="map-section" class="hidden">
+            <div class="map-controls">
+                <div class="filter-group">
+                    <label for="crime-filter">Filter by Type:</label>
+                    <select id="crime-filter">
+                        <option value="all">All Crimes</option>
+                        <option value="theft">Theft</option>
+                        <option value="vandalism">Vandalism</option>
+                        <option value="assault">Assault</option>
+                        <option value="suspicious">Suspicious Activity</option>
+                    </select>
+                </div>
+                <div class="date-filter">
+                    <label for="date-range">Time Period:</label>
+                    <select id="date-range">
+                        <option value="24">Last 24 Hours</option>
+                        <option value="72">Last 3 Days</option>
+                        <option value="168">Last Week</option>
+                        <option value="all">All Time</option>
+                    </select>
+                </div>
+            </div>
+            <div id="crime-map" class="map-container"></div>
+            <div id="crime-list" class="crime-list">
+                <!-- Crime list will be populated here -->
+            </div>
+        </section>
+
+        <!-- Admin Panel Section -->
+        <section id="admin-section" class="hidden">
+            <h2>Admin Dashboard</h2>
+            <div id="pending-reports" class="reports-container">
+                <!-- Pending reports will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="auth-form">
+                <h2>Login/Register</h2>
+                <div class="form-group">
+                    <label for="auth-email">Email</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" required>
+                </div>
+                <div class="auth-buttons">
+                    <button id="login-button" class="btn-primary">Login</button>
+                    <button id="register-button" class="btn-secondary">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Banner -->
+    <div id="notification-banner" class="hidden"></div>
+
+    <!-- Custom JS -->
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
